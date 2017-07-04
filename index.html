@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Co-op Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700">
+  <link rel="stylesheet" href="/public/dist/css/styles.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <aside>
+        <h2 class="tab-heading">Let us know a bit about you?</h2>
+        <ul class="tabs" role="tablist">
+          <li class="tabs__tab" id="tab-1" data-id="1" role="tab" aria-controls="panel" aria-selected="true" tabindex="0">I'm new to business banking</li>
+          <li class="tabs__tab" id="tab-2" data-id="4" role="tab" aria-controls="panel" aria-selected="false" tabindex="0">I'm looking to switch</li>
+          <li class="tabs__tab" id="tab-3" data-id="7" role="tab" aria-controls="panel" aria-selected="false" tabindex="0">I run a charity or social enterprise</li>
+          <li class="tabs__tab" id="tab-4" data-id="25" role="tab" aria-controls="panel" aria-selected="false" tabindex="0">I'm an existing customer</li>
+        </ul>
+        <div class="panel" role="tabpanel">
+          <!-- API Content Here -->
+        </div>
+      </aside>
+    </div>
+  </div>
+  <!-- This polyfill brings me great shame -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js"></script>
+  <script src="/public/dist/js/main.min.js"></script>
+</body>
+</html>

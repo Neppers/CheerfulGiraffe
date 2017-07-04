@@ -1,0 +1,234 @@
+@charset "utf-8";
+
+// Variables
+
+$font-family-roboto: 'Roboto', sans-serif;
+
+$font-size-zeta: 16px;
+$font-size-epsilon: 19px;
+$font-size-delta: 23px;
+$font-size-gamma: 28px;
+$font-size-beta: 33px;
+$font-size-alpha: 40px;
+
+$color-brand-1: #002663;
+$color-brand-2: #046AB8;
+
+$spacer-horizontal: 15px;
+$spacer-vertical: 10px;
+
+$container-large: 1140px;
+$container-medium: 720px;
+
+$border-radius: 50px;
+
+// Functions
+
+@function spacer-horizontal($multiplier, $spacer: $spacer-horizontal) {
+  @return $spacer * $multiplier;
+}
+
+@function spacer-vertical($multiplier, $spacer: $spacer-vertical) {
+  @return $spacer * $multiplier;
+}
+
+// Scaffolding
+
+html {
+  font-family: $font-family-roboto;
+  font-size: $font-size-zeta;
+}
+
+body { margin: 0; }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $color-brand-1;
+}
+
+h1 { font-size: $font-size-alpha; }
+h2 { font-size: $font-size-beta; }
+h3 { font-size: $font-size-gamma; }
+h4 { font-size: $font-size-delta; }
+h5 { font-size: $font-size-epsilon; }
+h6 { font-size: $font-size-zeta; }
+
+.tab-heading { text-align: center; }
+
+// Simple Grid
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.row {
+  padding-left: spacer-horizontal(2);
+  padding-right: spacer-horizontal(2);
+}
+
+// Tabs
+
+.tabs {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: spacer-vertical(2);
+
+  &__tab {
+    cursor: pointer;
+    padding: spacer-vertical(2) spacer-horizontal(2);
+    margin-bottom: spacer-vertical(1);
+
+    border: 2px solid $color-brand-2;
+    border-radius: $border-radius;
+
+    text-align: center;
+    font-weight: bold;
+    color: #046AB8;
+
+    &:hover,
+    &:focus,
+    &--selected {
+      background-color: $color-brand-2;
+      color: #fff;
+      outline: none;
+    }
+
+    &--selected {
+      pointer-events: none; // Remove ability to re-select already selected tab
+    }
+  }
+}
+
+// Panel
+
+.panel {
+  margin-top: spacer-vertical(5);
+
+  h3:first-letter {
+    text-transform: uppercase;
+  }
+
+  &--populated {
+    background-color: #EBEBEB;
+    border: 1px solid #ACACAC;
+  }
+}
+
+// Pokemon
+
+.pokemon {
+  text-align: center;
+
+  &__type {
+    display: inline-block;
+    background-color: #ACACAC;
+    color: #FFF;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  &__image {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+// Loader
+
+.loader {
+  margin: spacer-vertical(5) auto;
+  border: 10px solid lighten($color-brand-2, 30%);
+  border-left: 10px solid lighten($color-brand-1, 30%);
+  border-radius: 50%;
+  animation: rotate 1.1s infinite linear;
+
+  width: 70px;
+  height: 70px;
+}
+
+// Animations
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Medium breakpoint
+
+@media (min-width: $container-medium) {
+  .container { width: $container-medium; }
+
+  h2 { font-size: 3rem; }
+
+  .panel {
+    margin-left: spacer-horizontal(4);
+    margin-right: spacer-horizontal(4);
+  }
+
+  .tabs {
+    // Note: Depending upon what browser support needs to be, this could be swapped out for flexbox
+    display: table;
+
+    &__tab {
+      // As with the above, flexbox would replace this depending on required support
+      display: table-cell;
+      vertical-align: middle;
+
+      position: relative;
+      width: 25%;
+      margin-bottom: 0;
+
+      border-radius: 0;
+      border-left-width: 1px;
+      border-right-width: 1px;
+
+      &:first-of-type {
+        border-left-width: 2px;
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+      }
+
+      &:last-of-type {
+        border-right-width: 2px;
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+      }
+
+      // Create a faux-arrow with psuedo
+      &--selected::after {
+        content: ' ';
+        display: block;
+        position: absolute;
+        bottom: -20px;
+        // Allows for horizontal alignment of absolutely positioned element
+        left: 50%;
+        transform: translate(-50%);
+
+        border-left: 18px solid transparent;
+        border-right: 18px solid transparent;
+        border-top: 18px solid $color-brand-2;
+      }
+    }
+  }
+}
+
+// Large breakpoint
+
+@media (min-width: $container-large) {
+  .container { width: $container-large; }
+}
